@@ -1,0 +1,66 @@
+
+body {
+    background-color: #E5F3F5; 
+    color: #4B5D85;
+
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+};
+
+div #mapa_geral{
+    max-width: fit-content;
+}
+
+div .content{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+}
+
+header {
+    text-align: center;
+    color: #4B5D85;
+}
+
+footer {
+    max-width: 600px;
+    margin-left:auto; 
+    margin-right:auto; 
+    display:block;
+}
+
+#mapaMain {
+    margin-left:auto; 
+    margin-right:auto; 
+    display:block;
+
+    padding: 24px;
+}
+
+/* svg .sul{
+    fill: var(--corPreto);
+    
+}
+
+svg {
+    fill: #FFFF00;
+} */
+
+:root{
+    --corPreto: black;
+    /* cores de temperatura */
+    --cor10: #DE8787;
+    --cor20: #DB9393;
+    --cor30: #DEA793;
+    --cor40: #E1BC93;
+    --cor50: #E4D093;
+    --cor60: #E7E493;
+    --cor70: #D8E195;
+    --cor80: #C8DD97;
+    --cor90: #B9D999;
+    --cor100: #AAD59A;
+
+}
