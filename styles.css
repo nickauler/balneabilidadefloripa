@@ -18,8 +18,8 @@ div .content{
     justify-content:center;
     align-items: center;
     text-align: center;
-    margin-left: 40px;
-    margin-right: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 header {
@@ -42,17 +42,7 @@ footer {
     padding: 24px;
 }
 
-/* svg .sul{
-    fill: var(--corPreto);
-    
-}
-
-svg {
-    fill: #FFFF00;
-} */
-
 :root{
-    --corPreto: black;
     /* cores de temperatura */
     --cor10: #DE8787;
     --cor20: #DB9393;
@@ -64,5 +54,4 @@ svg {
     --cor80: #C8DD97;
     --cor90: #B9D999;
     --cor100: #AAD59A;
-
 }

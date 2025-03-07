@@ -1,4 +1,4 @@
-//declaração grupos
+//DECLARAÇÃO DAS REGIÕES
 //centro
 let sedeInsular = [0,0,1,0];
 
@@ -32,8 +32,8 @@ let norte = [canasvieiras, cachoeira, ingleses, santoAntonio, ratones];
 let leste = [lagoa, barraLagoa, rioVermelho];
 let sul = [ribeirao,pantanoSul,campeche];
 
-calcularRegiao(centro);
-calcularRegiao(norte);
+//calcularRegiao(centro);
+//calcularRegiao(norte);
 // mudarCor();
 
 
@@ -48,9 +48,9 @@ calcularRegiao(norte);
 function calcularRegiao(regiao){
     let totalBalneavel = 0;
     let totalPontos = 0;
-    for (let i=0; i < regiao.length; i++){ //percorre os distritos
+    for (let i=0; i < regiao.length; i++){ //percorre a região para acessar os distritos
         console.log('lista '+i)
-        for (let j=0; j < regiao[i].length; j++){ 
+        for (let j=0; j < regiao[i].length; j++){ //percorre um distrito
             console.log('item '+j);
             totalBalneavel += regiao[i][j];
             console.log(regiao[i][j]);
@@ -59,7 +59,7 @@ function calcularRegiao(regiao){
     }
     console.log("Balneabilidade da região: " +totalBalneavel+'/'+totalPontos );
     let resultado = totalBalneavel / totalPontos;
-    return resultado;
+    return resultado; //proporção em porcentagem decimal
 }
 
 
@@ -73,7 +73,6 @@ function calcularDistrito(distrito){
         console.log(distrito[j]);
         totalPontos++; 
     }
-    //}
     console.log("Balneabilidade do distrito: " +totalBalneavel+'/'+totalPontos );
     let resultado = totalBalneavel / totalPontos;
     return resultado;
@@ -159,11 +158,13 @@ function mudarCores(){
         seletor[i].setAttribute("fill", corAtual) ;
         }
     //Ratones não aplica, porque não tem praia
-    /* seletor = document.querySelectorAll("#ratones");
+    /* 
+    seletor = document.querySelectorAll("#ratones");
         corAtual = selecionarCorDistrito(norte[4]);
         for (var i = 0; i < seletor.length;  i++) {
         seletor[i].setAttribute("fill", corAtual) ;
-        } */
+        }
+    */
 
 
     // Região Leste
@@ -207,6 +208,7 @@ function mudarCores(){
         seletor[i].setAttribute("fill", corAtual) ;
         }
 
+    // Região Centro
     console.log("calculando região Centro");
     seletor = document.querySelectorAll(".centro");
     corAtual = selecionarCor(centro);
@@ -214,6 +216,7 @@ function mudarCores(){
         seletor[i].setAttribute("fill", corAtual) ;
     }
 
+    //Região Continente
     console.log("calculando região Continente");
     seletor = document.querySelectorAll(".continente");
     corAtual = selecionarCor(continente);
@@ -258,106 +261,4 @@ function mudarCoresPorRegiao(){
     for (var i = 0; i < seletor.length;  i++) {
         seletor[i].setAttribute("fill", corAtual) ;
     }
-}
-
-
-
-//TESTE
-//função para analisar direto do site de balneabilidade
-function listarPontosTeste(dados) {
-    var dados = dados.split("#");
-    $("#listaPontos").html("");
-    $.post('https://balneabilidade.ima.sc.gov.br/pontoColeta/getPontosByLocal', {localID: dados[0]},
-        function (data, status) {
-            if (status == "success") {
-                var pontos = jQuery.parseJSON(data);
-                for (var i in pontos) {
-
-                    var tr = document.createElement("tr");
-
-                    var local = document.createElement("td")
-                    local.appendChild(document.createTextNode(pontos[i].LOCALIZACAO));
-
-                    var condicao = document.createElement("td")
-                    condicao.appendChild(document.createTextNode(pontos[i].CONDICAO));
-
-                    if (pontos[i].CONDICAO === "PRÓPRIO") {
-                        condicao.setAttribute("style", "color:blue")
-                    } else {
-                        if (pontos[i].CONDICAO === "IMPRÓPRIO") {
-                            condicao.setAttribute("style", "color:red")
-                        } else {
-                            condicao.setAttribute("style", "color:orange")
-                        }
-                    }
-
-                    tr.appendChild(local);
-                    tr.appendChild(condicao);
-
-                    $("#listaPontos").append(tr);
-
-                }
-                $("#divListaCondicaoPontos").show();
-            }
-        });
-}
-
-function getLocais(municipioID) {
-    $("#campoLocais").html("");
-    $.post('https://balneabilidade.ima.sc.gov.br/local/getLocaisByMunicipio', {municipioID: municipioID},
-            function (data, status) {
-                if (status == "success") {
-                    var locais = jQuery.parseJSON(data);
-                    for (var i in locais) {
-
-                        var option = document.createElement("option");
-                        var valor = locais[i].CODIGO;
-                        valor += "#" + locais[i].LATITUDE;
-                        valor += "#" + locais[i].LONGITUDE;
-                        option.setAttribute("value", valor);
-                        option.appendChild(document.createTextNode(locais[i].BALNEARIO));
-
-                        $("#campoLocais").append(option);
-
-                    }
-
-                }
-            });
-}
-
-function getMunicipios() {
-    $("#campoMunicipios").html("");
-    $.post('https://balneabilidade.ima.sc.gov.br/municipio/getMunicipios',
-            function (data, status) {
-                if (status == "success") {
-                    var municipios = jQuery.parseJSON(data);
-
-                    for (var i in municipios) {
-                        var option = document.createElement("option");
-                        option.setAttribute("value", municipios[i].CODIGO);
-                        option.appendChild(document.createTextNode(municipios[i].DESCRICAO));
-                        $("#campoMunicipios").append(option);
-
-                    }
-                }
-            });
-    getLocais(10);
-}
-
-//Teste com puppeteer
-function marionete(){
-    
-    const puppeteer = require('puppeteer');
-
-    (async () => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto('https://balneabilidade.ima.sc.gov.br/relatorio/relatorioBalneabildade');
-    
-    // Pegando um elemento da página
-    const elemento = await page.$eval('td .localo', el => el.textContent);
-    console.log(elemento);
-
-    await browser.close();
-})();
 }

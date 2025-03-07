@@ -12,12 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <!-- importando os scripts do IMA -->
-    <script src="https://balneabilidade.ima.sc.gov.br/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="https://balneabilidade.ima.sc.gov.br/assets/js/bootstrap.min.js"></script>
-    <script src="https://balneabilidade.ima.sc.gov.br/assets/js/OpenLayers.js"></script>
-    <script src="https://balneabilidade.ima.sc.gov.br/assets/js/jquery.redirect.js"></script>
-    <script src="https://balneabilidade.ima.sc.gov.br/assets/js/jquery.mask.min.js"></script>
+    <!-- TODO limpeza geral do código, remover as tentativas de uso de API -->
 </head>
 <body>
     <header>
@@ -80,15 +75,6 @@
             </svg>
         </div>
     </div>  
-<!--     <div class="content" id="listaDePontos">
-        <select class="custom-select" id="campoLocais">
-
-        </select>
-        <table id="listaPontos">
-
-        </table>
-        
-    </div> -->
     <footer>
         <p>
             O mapa representa a balneabilidade de cada distrito de Florianópolis.
@@ -107,18 +93,5 @@
 <script>
 
     mudarCores();
-    /* let corCustom = document.querySelectorAll(".norte");
-    for (var i = 0; i < corCustom.length;  i++) {
-        //cor[i].setAttribute("type", 'href');
-        corCustom[i].setAttribute("fill","var(--corPreto)") ;
-    } */
-    // corCustom.setAttribute("fill","#4A3931");
-    // corCustom.setAttribute("visibility", "hidden");
-
-
-    /* fetch('https://balneabilidade.ima.sc.gov.br/relatorio/relatorioBalneabildade')
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Erro:', error)); */
 </script>
 </html>
