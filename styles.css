@@ -30,7 +30,9 @@ footer {
     margin-left:auto; 
     margin-right:auto; 
     display:block;
+}
 
+footer p{
     padding-left: 40px;
     padding-right: 40px;
 }
